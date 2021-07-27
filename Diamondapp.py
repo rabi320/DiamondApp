@@ -78,19 +78,19 @@ model.fit(X,y)
 
 # this is the main function in which we define our webpage 
 
-    # giving the webpage a title
-    st.title("Diamond Price Estimator 💎")
-    image = Image.open('diamond.jpg')
-    st.image(image)
-    st.write('---')
+# giving the webpage a title
+st.title("Diamond Price Estimator 💎")
+image = Image.open('diamond.jpg')
+st.image(image)
+st.write('---')
 
-    # here we define some of the front end elements of the web page like 
-    # the font and background color, the padding and the text to be displayed
-    html_temp = """
-    <div style ="background-color:cyan;padding:13px">
-    <h1 style ="color:black;text-align:center;font-family:Comic Sans MS;">How much is your diamond worth?</h1>
-    </div>
-    """
+# here we define some of the front end elements of the web page like 
+# the font and background color, the padding and the text to be displayed
+html_temp = """
+<div style ="background-color:cyan;padding:13px">
+<h1 style ="color:black;text-align:center;font-family:Comic Sans MS;">How much is your diamond worth?</h1>
+</div>
+"""
 
 # this line allows us to display the front end aspects we have 
 # defined in the above code
