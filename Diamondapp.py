@@ -84,52 +84,54 @@ def prediction(df):
     return prediction
   
 
+# this is the main function in which we define our webpage 
+def main():
+    # giving the webpage a title
+    st.title("Diamond Price Estimator 💎")
+    image = Image.open('diamond.jpg')
+    st.image(image)
+    st.write('---')
 
- # giving the webpage a title
-st.title("Diamond Price Estimator 💎")
-image = Image.open('diamond.jpg')
-st.image(image)
-st.write('---')
+    # here we define some of the front end elements of the web page like 
+    # the font and background color, the padding and the text to be displayed
+    html_temp = """
+    <div style ="background-color:cyan;padding:13px">
+    <h1 style ="color:black;text-align:center;font-family:Comic Sans MS;">How much is your diamond worth?</h1>
+    </div>
+    """
 
-# here we define some of the front end elements of the web page like 
-# the font and background color, the padding and the text to be displayed
-html_temp = """
-<div style ="background-color:cyan;padding:13px">
-<h1 style ="color:black;text-align:center;font-family:Comic Sans MS;">How much is your diamond worth?</h1>
-</div>
-"""
+    # this line allows us to display the front end aspects we have 
+    # defined in the above code
+    st.markdown(html_temp, unsafe_allow_html = True)
 
-# this line allows us to display the front end aspects we have 
-# defined in the above code
-st.markdown(html_temp, unsafe_allow_html = True)
+    # the following lines create text boxes in which the user can enter 
+    # the data required to make the prediction
+    carat = st.slider('Carat', 0.2, 5.01)
+    cut = st.selectbox("Quality of the cut", options = ['Fair', 'Good', 'Very Good', 'Premium', 'Ideal'])
+    color = st.selectbox("Diamond color, from J (worst) to D (best)", options = ['J', 'I', 'H', 'G', 'F', 'E','D'])
+    clarity = st.selectbox("Clarity of the diamond (I1 (worst), SI2, SI1, VS2, VS1, VVS2, VVS1, IF (best))", options = ["I1", "SI2", "SI1", "VS2", "VS1", "VVS2", "VVS1",'IF'])
+    x = st.slider('Length', 0.01, 10.74)
+    y = st.slider('Width', 0.01, 58.9)
+    z = st.slider('Depth', 0.01, 31.8)
+    depth = 2*z/(x+y)
+    table = st.slider('Width of top of diamond relative to widest point (%)', 43, 95,step = 1)    
+    data = {'carat': carat,
+            'cut': cut,
+            'color': color,
+            'clarity': clarity,
+            'depth': round(depth,2),
+            'table': table,
+            'x': x,
+            'y': y,
+            'z': z}
 
-# the following lines create text boxes in which the user can enter 
-# the data required to make the prediction
-carat = st.slider('Carat', 0.2, 5.01)
-cut = st.selectbox("Quality of the cut", options = ['Fair', 'Good', 'Very Good', 'Premium', 'Ideal'])
-color = st.selectbox("Diamond color, from J (worst) to D (best)", options = ['J', 'I', 'H', 'G', 'F', 'E','D'])
-clarity = st.selectbox("Clarity of the diamond (I1 (worst), SI2, SI1, VS2, VS1, VVS2, VVS1, IF (best))", options = ["I1", "SI2", "SI1", "VS2", "VS1", "VVS2", "VVS1",'IF'])
-x = st.slider('Length', 0.01, 10.74)
-y = st.slider('Width', 0.01, 58.9)
-z = st.slider('Depth', 0.01, 31.8)
-depth = 2*z/(x+y)
-table = st.slider('Width of top of diamond relative to widest point (%)', 43, 95,step = 1)    
-data = {'carat': carat,
-        'cut': cut,
-        'color': color,
-        'clarity': clarity,
-        'depth': round(depth,2),
-        'table': table,
-        'x': x,
-        'y': y,
-        'z': z}
-
-features = pd.DataFrame(data, index=[0])
-result =""  
-# the below line ensures that when the button called 'Predict' is clicked, 
-# the prediction function defined above is called to make the prediction 
-# and store it in the variable result
-if st.button("Estimate Diamond Price"):
-    result = prediction(features)
-    st.success(f'The Diamond is worth {result}$')
-     
+    features = pd.DataFrame(data, index=[0])
+    result =""  
+    # the below line ensures that when the button called 'Predict' is clicked, 
+    # the prediction function defined above is called to make the prediction 
+    # and store it in the variable result
+    if st.button("Estimate Diamond Price"):
+        result = prediction(features)
+        st.success(f'The Diamond is worth {result}$')
+if __name__=='__main__':
+    main()     
