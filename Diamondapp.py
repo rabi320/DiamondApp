@@ -52,15 +52,15 @@ st.markdown(html_temp, unsafe_allow_html = True)
 # the data required to make the prediction
 
 def user_input_features():
-    carat = st.slider('Carat', 0.2, 5.01)
-    cut = st.selectbox("Quality of the cut", options = ['Fair', 'Good', 'Very Good', 'Premium', 'Ideal'])
-    color = st.selectbox("Diamond color, from J (worst) to D (best)", options = ['J', 'I', 'H', 'G', 'F', 'E','D'])
-    clarity = st.selectbox("Clarity of the diamond (I1 (worst), SI2, SI1, VS2, VS1, VVS2, VVS1, IF (best))", options = ["I1", "SI2", "SI1", "VS2", "VS1", "VVS2", "VVS1",'IF'])
-    x = st.slider('Length', 0.01, 10.74)
-    y = st.slider('Width', 0.01, 58.9)
-    z = st.slider('Depth', 0.01, 31.8)
-    depth = st.slider('total depth (%)', 43, 95,step = 1)
-    table = st.slider('Width of top of diamond relative to widest point (%)', 43, 95,step = 1)    
+    carat = st.sidebar.slider('Carat', 0.2, 5.01)
+    cut = st.sidebar.selectbox("Quality of the cut", options = ['Fair', 'Good', 'Very Good', 'Premium', 'Ideal'])
+    color = st.sidebar.selectbox("Diamond color, from J (worst) to D (best)", options = ['J', 'I', 'H', 'G', 'F', 'E','D'])
+    clarity = st.sidebar.selectbox("Clarity of the diamond (I1 (worst), SI2, SI1, VS2, VS1, VVS2, VVS1, IF (best))", options = ["I1", "SI2", "SI1", "VS2", "VS1", "VVS2", "VVS1",'IF'])
+    x = st.sidebar.slider('Length', 0.01, 10.74)
+    y = st.sidebar.slider('Width', 0.01, 58.9)
+    z = st.sidebar.slider('Depth', 0.01, 31.8)
+    depth = st.sidebar.slider('total depth (%)', 43, 95,step = 1)
+    table = st.sidebar.slider('Width of top of diamond relative to widest point (%)', 43, 95,step = 1)    
     data = {'carat': carat,
             'cut': cut,
             'color': color,
@@ -89,8 +89,6 @@ def Outlier_Detector(X,factor):
 
 #creating outlier_remover object using FunctionTransformer with factor=3
 Outlier = FunctionTransformer(Outlier_Detector,kw_args={'factor':3})
-
-#contiuous_transformer = SimpleImputer(strategy='median')
 
 contiuous_transformer = Pipeline(steps=[
 ('outlier', Outlier),
