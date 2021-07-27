@@ -134,5 +134,5 @@ st.write('---')
 #prediction
 prediction = reg.predict(df)[0]
 st.header('Estimate Diamond Price')
-st.write(f'The Diamond is worth {result}$')
+st.write(f'The Diamond is worth {prediction}$')
 st.write('---')
