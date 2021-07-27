@@ -126,6 +126,13 @@ reg.fit(X,y)
 # the below line ensures that when the button called 'Predict' is clicked, 
 # the prediction function defined above is called to make the prediction 
 # and store it in the variable result
-if st.button("Estimate Diamond Price"):
-    result = reg.predict(df)[0]
-    st.write(f'The Diamond is worth {result}$')
+
+#if st.button("Estimate Diamond Price"):
+    #result = reg.predict(df)[0]
+    #st.write(f'The Diamond is worth {result}$')
+
+#prediction
+prediction = reg.predict(df)[0]
+st.header('Estimate Diamond Price')
+st.write(prediction)
+st.write('---')
