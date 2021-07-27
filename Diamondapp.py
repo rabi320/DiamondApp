@@ -17,7 +17,7 @@ from sklearn.preprocessing import StandardScaler
 from PIL import Image
 
 #data
-diamond = pd.read_csv("../Data/diamonds.csv")
+diamond = pd.read_csv("diamonds.csv")
 diamond.drop("Unnamed: 0",axis = 1, inplace = True)
 
 X = diamond.drop("price", axis = 1)
@@ -87,7 +87,7 @@ def prediction(df):
 
  # giving the webpage a title
 st.title("Diamond Price Estimator 💎")
-image = Image.open('/Data/diamond.jpg')
+image = Image.open('diamond.jpg')
 st.image(image)
 st.write('---')
 
