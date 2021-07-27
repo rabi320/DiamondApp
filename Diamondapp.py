@@ -130,9 +130,9 @@ reg.fit(X,y)
 #if st.button("Estimate Diamond Price"):
     #result = reg.predict(df)[0]
     #st.write(f'The Diamond is worth {result}$')
-
+st.write('---')
 #prediction
 prediction = reg.predict(df)[0]
 st.header('Estimate Diamond Price')
-st.write(prediction)
+st.write(f'The Diamond is worth {result}$')
 st.write('---')
