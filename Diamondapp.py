@@ -132,6 +132,6 @@ def main():
     # and store it in the variable result
     if st.button("Estimate Diamond Price"):
         result = prediction(features)
-        st.success(f'The Diamond is worth {result}$')
+    st.success(f'The Diamond is worth {result}$')
 if __name__=='__main__':
     main()     
