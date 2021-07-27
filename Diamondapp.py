@@ -113,7 +113,7 @@ def main():
     x = st.slider('Length', 0.01, 10.74)
     y = st.slider('Width', 0.01, 58.9)
     z = st.slider('Depth', 0.01, 31.8)
-    depth = 2*z/(x+y)
+    depth = st.slider('total depth (%)', 43, 95,step = 1)
     table = st.slider('Width of top of diamond relative to widest point (%)', 43, 95,step = 1)    
     data = {'carat': carat,
             'cut': cut,
