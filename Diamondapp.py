@@ -20,7 +20,7 @@ from PIL import Image
 diamond = pd.read_csv("diamonds.csv")
 diamond.drop("Unnamed: 0",axis = 1, inplace = True)
 
-diamond = diamond.iloc[:20000,:]
+diamond = diamond.iloc[:10000,:]
 
 X = diamond.drop("price", axis = 1)
 y = diamond["price"]
